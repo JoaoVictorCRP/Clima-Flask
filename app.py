@@ -1,8 +1,21 @@
+import requests
+import string
 from flask import Flask, render_template, request, redirect, url_for, flash
 # from flask_sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
+API_KEY = os.getenv('API_KEY')
 
+def get_weather_data(city):
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric&lang=pt_br'
+    response = requests.get(url).json()
+    print(response)
+    return response
+
+get_weather_data('London')
+
+# Rota Principal
 @app.route('/')
 def get_index():
     return render_template('index.html')
