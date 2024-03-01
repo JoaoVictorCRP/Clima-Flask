@@ -15,7 +15,7 @@ class WeatherData:
     temperature: float
 
 # Função de Requisição
-def get_weather_data(city):
+def get_weather_data(city: str):
     url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric&lang=pt_br'
     response = requests.get(url).json()
     data = WeatherData(

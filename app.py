@@ -3,12 +3,12 @@ from weather import get_weather_data
 
 app = Flask(__name__)
 
-
-
-
 # Rota Principal
-@app.route('/')
-def get_index():
+@app.route('/', methods=['GET','POST'])
+def index():
+    if request.method == 'POST':
+        city = request.form['cidade']
+        print(get_weather_data(city))
     return render_template('index.html')
 
 # Rota de Post
@@ -19,4 +19,4 @@ def index_post():
 
 
 if __name__ == '__main__':
-    print(get_weather_data('Sao Paulo').description)
+    app.run(debug=True)
