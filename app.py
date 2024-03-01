@@ -6,10 +6,11 @@ app = Flask(__name__)
 # Rota Principal
 @app.route('/', methods=['GET','POST'])
 def index():
+    data = None # Declarando
     if request.method == 'POST':
         city = request.form['cidade']
-        print(get_weather_data(city))
-    return render_template('index.html')
+        data = get_weather_data(city)
+    return render_template('index.html',data=data)
 
 # Rota de Post
 def index_post():

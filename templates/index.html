@@ -21,21 +21,25 @@
 
     <section class="section">
         <div class="container">
-            <div class="columns">
-                <div class="column is-offset-4 is-4">
-                    <form method="POST">
-                        <div class="field has-addons">
-                            <div class="control is-expanded">
-                                <input class="input" name="cidade" type="text" placeholder="Nome da Cidade" style="text-transform: capitalize;">
-                            </div>
-                            <div class="control">
-                                <button class="button is-info">
-                                    Adicionar Cidade
-                                </button>
-                            </div>
+            <div class="column is-offset-4 is-4">
+                <form method="POST">
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input class="input" name="cidade" type="text" placeholder="Nome da Cidade" style="text-transform: capitalize;">
                         </div>
-                    </form>
-                </div>
+
+                        <div class="control">
+                            <button class="button is-info">Adicionar Cidade</button>
+                        </div>
+                    </div>
+                </form>
+
+                {% if data %}
+                    {{ data.description }}
+                    {{ data.temperature }}
+                    <img src="https://openweathermap.org/img/wn/{{data.icon}}@2x.png" alt="Weather Icon">
+                {% endif %}
+
             </div>
         </div>
     </section>
