@@ -29,18 +29,26 @@
                         </div>
 
                         <div class="control">
-                            <button class="button is-info">Adicionar Cidade</button>
+                            <button class="button is-info">Buscar Cidade</button>
                         </div>
                     </div>
                 </form>
 
-                {% if data %}
-                    {{ data.description }}
-                    {{ data.temperature }}
-                    <img src="https://openweathermap.org/img/wn/{{data.icon}}@2x.png" alt="Weather Icon">
-                {% endif %}
-
+                <div class="column">
+                    {% if data %}
+                        <p class="has-text-info">
+                            <!-- <strong> -->
+                            {{ data.name.capitalize() }} <br>
+                            {{ data.description.capitalize() }}<br>
+                            {{ data.temperature }}ºc<br>
+                            <!-- </strong> -->
+                            <img src="https://openweathermap.org/img/wn/{{data.icon}}@2x.png" alt="Weather Icon">
+                        </p>
+                    {% endif %}
+                </div>
             </div>
+
+
         </div>
     </section>
 
