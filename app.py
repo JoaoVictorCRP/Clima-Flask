@@ -8,14 +8,14 @@ app = Flask(__name__)
 def index():
     data = None # Declarando
     if request.method == 'POST':
-        city = request.form['cidade']
+        city = request.form['cityName']
         data = get_weather_data(city)
     return render_template('index.html',data=data)
 
 # Rota de Post
 def index_post():
     msg_erro = ''
-    city = request.form.get('cidade') # GET (** name do input **)
+    city = request.form.get('cityName') # GET (** name do input **)
     city = city.lower()
 
 
