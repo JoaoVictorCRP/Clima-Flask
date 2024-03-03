@@ -15,10 +15,20 @@ class WeatherData:
     icon: str
     temperature: float
 
-# Função de Requisição
-def get_weather_data(city: str):
+def get_geolocation(city: str, state: str, country: str):
+    try: 
+        url = f'http://api.openweathermap.org/geo/1.0/direct?q={city},{state},{country}&limit=1&appid={API_KEY}'
+        response = requests.get(url).json()[0]
+        lat, lon = response.get('lat'), response.get('lon')
+        
+        return lat, lon
+    except Exception as e:
+        print(f'Requisição da geolocalização falhou!\n{e}')
+
+# Função de Requisição do Clima
+def get_weather_data(lat, lon):
     try:
-        url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric&lang=pt_br'
+        url = f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric&lang=pt_br'
         response = requests.get(url).json()
         data = WeatherData(
             name=response.get('name'),
@@ -28,5 +38,5 @@ def get_weather_data(city: str):
             temperature=int(response.get('main').get('temp'))
         )
         return data
-    except:
-        print('Ocorreu um erro ao fazer a requisição!')
+    except Exception as e:
+        print(f'Requisição do clima falhou!\n{e}')

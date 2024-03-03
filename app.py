@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from weather import get_weather_data
+import requisitions as r
 
 app = Flask(__name__)
 
@@ -9,7 +9,10 @@ def index():
     data = None # Declarando
     if request.method == 'POST':
         city = request.form['cityName']
-        data = get_weather_data(city)
+        state = request.form['stateName']
+        country = request.form['countryName']
+        lat, lon = r.get_geolocation(city,state,country)
+        data = r.get_weather_data(lat,lon)
     return render_template('index.html',data=data)
 
 # Rota de Post

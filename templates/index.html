@@ -21,9 +21,10 @@
         </form>
 
         {% if data %}
-            {{ data.name }} <br>
-            {{ data.description }} <br>
-            {{ data.temperature }} <br>
+            {{ data.name.capitalize() }} <br>
+            Clima: {{ data.description.capitalize() }} <br>
+            Temperatura: {{ data.temperature }}ºc <br>
+            <img src="https://openweathermap.org/img/wn/{{data.icon}}@2x.png" alt="Weather Icon">
         {% endif %}
     </div>
 
