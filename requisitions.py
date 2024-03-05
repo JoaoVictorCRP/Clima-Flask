@@ -37,7 +37,6 @@ def get_weather_data(lat, lon):
             icon=response.get('weather')[0].get('icon'),
             temperature=int(response.get('main').get('temp'))
         )
-        print(data);
         return data
     except Exception as e:
         print(f'Requisição do clima falhou!\n{e}')

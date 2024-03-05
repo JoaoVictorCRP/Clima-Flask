@@ -18,8 +18,8 @@
 
         <form action="/" method="post"> 
             
-            <div class="contaner">
-                <div class="row p-4">
+            <div class="container">
+                <div class="row">
                     <div class="col-sm">
                         <input type="text" id="cityName" name="cityName" placeholder="Cidade" class="form-control">
                     </div>
@@ -43,13 +43,14 @@
                 <img src="https://openweathermap.org/img/wn/{{data.icon}}@2x.png" alt="Weather Icon">
 
             </div> -->
-
-            <div class="card" style="width: 220px;">
-                <img src="https://openweathermap.org/img/wn/{{data.icon}}@2x.png" alt="Weather Icon">
-                <div class="card-body">
-                  <h5 class="card-title">{{ data.name.capitalize() }} - {{ data.temperature }}ºc </h5>
-                  <p class="card-text"> {{ data.description.capitalize() }} </p>
-                  <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            <div class="text-center mt-3 p-2">
+                <div class="card mx-auto" style="width: 120px;">
+                    <img src="https://openweathermap.org/img/wn/{{data.icon}}@2x.png" alt="Weather Icon">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ data.name.capitalize() }} <br> {{ data.temperature }}ºc </h5>
+                    <p class="card-text"> {{ data.description.capitalize() }} </p>
+                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
                 </div>
             </div>
 
