@@ -32,11 +32,12 @@ def get_weather_data(lat, lon):
         response = requests.get(url).json()
         data = WeatherData(
             name=response.get('name'),
-            main=response.get('weather')[0].get('main'), # Definição do clima, em inglês
+            main=response.get('weather')[0].get('main'), # "Main" é a definição do clima, essa parte pode ser traduzida de acordo com os parametros da requisição
             description=response.get('weather')[0].get('description'),
             icon=response.get('weather')[0].get('icon'),
             temperature=int(response.get('main').get('temp'))
         )
+        print(data);
         return data
     except Exception as e:
         print(f'Requisição do clima falhou!\n{e}')
