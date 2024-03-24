@@ -35,7 +35,7 @@
             <button type="submit" class="submit btn btn-light">Buscar</button>
         </form>
 
-        {% if data %}
+        {% for weather in weather_data %}
             <!-- <div>
                 {{ data.name.capitalize() }} <br>
                 Clima: {{ data.description.capitalize() }} <br>
@@ -47,14 +47,14 @@
                 <div class="card mx-auto" style="width: 120px;">
                     <img src="https://openweathermap.org/img/wn/{{data.icon}}@2x.png" alt="Weather Icon">
                     <div class="card-body">
-                    <h5 class="card-title">{{ data.name.capitalize() }} <br> {{ data.temperature }}ºc </h5>
-                    <p class="card-text"> {{ data.description.capitalize() }} </p>
+                    <h5 class="card-title">{{ weather.name.capitalize() }} <br> {{ weather.temperature }}ºc </h5>
+                    <p class="card-text"> {{ weather.description.capitalize() }} </p>
                     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                     </div>
                 </div>
             </div>
 
-        {% endif %}
+        {% endfor %}
 
         
     </div>
