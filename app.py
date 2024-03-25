@@ -33,11 +33,13 @@ def index():
     data = None # Declarando
     
     for city in cities:
-        lat, lon = r.get_geolocation(city.name,city.state,city.country)
-        data = r.get_weather_data(lat,lon)
-        weather_data.append(data)
+        # Está ocorrendo algum erro de iteração aqui, algum 
+        if city.name:
+            print(f'{city.name} deu certo.') # debug
+            lat, lon = r.get_geolocation(city.name,city.state,city.country)
+            data = r.get_weather_data(lat,lon)
+            weather_data.append(data)
 
-    
     if request.method == 'POST':
         city = request.form['cityName']
         state = request.form['stateName']
@@ -57,8 +59,6 @@ def index_post():
     msg_erro = ''
     city = request.form.get('cityName') # GET (** name do input **)
     city = city.lower()
-
-print(City.__table__.columns)
 
 if __name__ == '__main__':
     with app.app_context():
