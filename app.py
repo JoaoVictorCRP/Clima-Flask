@@ -7,7 +7,7 @@ import requisitions as r
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///clima.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///clima.sqlite3'
 
 db = sqla(app)
 
@@ -16,7 +16,7 @@ class City(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     state = db.Column(db.String(40))
-    country = db.column(db.String(50))
+    country = db.Column(db.String(50))
 
     def __init__(self, name, state=None,country=None) -> None:
         self.name = name
@@ -33,7 +33,10 @@ def index():
     data = None # Declarando
     
     for city in cities:
-        weather_data.append(r.get_weather_data(city.name))
+        lat, lon = r.get_geolocation(city.name,city.state,city.country)
+        data = r.get_weather_data(lat,lon)
+        weather_data.append(data)
+
     
     if request.method == 'POST':
         city = request.form['cityName']
@@ -55,12 +58,7 @@ def index_post():
     city = request.form.get('cityName') # GET (** name do input **)
     city = city.lower()
 
-# Criando o modelo
-with app.app_context():
-    db.create_all()
-    test = db.session.execute(db.select(City).order_by(City.name)).scalars()
-
-
+print(City.__table__.columns)
 
 if __name__ == '__main__':
     with app.app_context():

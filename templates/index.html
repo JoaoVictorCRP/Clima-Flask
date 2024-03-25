@@ -36,16 +36,9 @@
         </form>
 
         {% for weather in weather_data %}
-            <!-- <div>
-                {{ data.name.capitalize() }} <br>
-                Clima: {{ data.description.capitalize() }} <br>
-                Temperatura: {{ data.temperature }}ºc <br>
-                <img src="https://openweathermap.org/img/wn/{{data.icon}}@2x.png" alt="Weather Icon">
-
-            </div> -->
             <div class="text-center mt-3 p-2">
                 <div class="card mx-auto" style="width: 120px;">
-                    <img src="https://openweathermap.org/img/wn/{{data.icon}}@2x.png" alt="Weather Icon">
+                    <img src="https://openweathermap.org/img/wn/{{weather.icon}}@2x.png" alt="Weather Icon">
                     <div class="card-body">
                     <h5 class="card-title">{{ weather.name.capitalize() }} <br> {{ weather.temperature }}ºc </h5>
                     <p class="card-text"> {{ weather.description.capitalize() }} </p>
@@ -53,12 +46,8 @@
                     </div>
                 </div>
             </div>
-
         {% endfor %}
-
-        
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
